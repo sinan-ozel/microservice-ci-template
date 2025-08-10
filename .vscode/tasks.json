@@ -1,0 +1,49 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "tests",
+      "type": "shell",
+      "command": "docker",
+      "args": [
+        "compose",
+        "-f", "${workspaceFolder}/tests/docker-compose.yaml",
+        "--project-directory", "${workspaceFolder}/tests",
+        "up",
+        "--build",
+        "--abort-on-container-exit",
+        "--exit-code-from", "test"
+      ],
+      "problemMatcher": [],
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "lint (flake8, containerized)",
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "-c",
+        "docker run --rm -u $(id -u):$(id -g) -e HOME=/tmp -v ${workspaceFolder}:/code -w /code/src python:3.11-slim bash ../autolint.sh"
+      ],
+      "problemMatcher": [],
+      "group": "test"
+    },
+    {
+      "label": "run server",
+      "type": "shell",
+      "dependsOn": [],
+      "command": "sh",
+      "args": [
+        "-c",
+        "docker build -t spell-card-server . && docker run --rm -p 8000:8000 -v ./cards:/app/cards spell-card-server"
+      ],
+      "problemMatcher": [],
+      "group": "build"
+    }
+  ]
+}
+
+
