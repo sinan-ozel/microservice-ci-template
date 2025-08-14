@@ -31,6 +31,7 @@ you only want to change the top-level Dockerfile and all of the code in the `src
 If you already wrote tests for the microservice, you can rewrite an entire microservice in a different language
 while keeping the tests in place, and substitute with relative ease.
 This can be helpful in prototyped projects, or when speed becomes an issue as the project is scaled.
+One important change is that you will have to change the way that version is updated in the git actions.
 
 Note: This is part of the reason why I preferred `pip` to the much-better `poetry`. 
 I wanted to keep the test-suite dependencies independent of the code base.
