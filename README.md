@@ -10,13 +10,14 @@ This repository is a template for building Python microservices using FastAPI. I
 
 ## Usage
 1. **Clone this repository** and use it as a starting point for your microservice.
-2. **Develop your API** in the `src/` directory.
-3. **Write tests** in the `tests/` directory.
-4. **Run tests locally**:
+2. Set the secrets `DOCKERHUB_USERNAME` and `DOCKERHUB_TOKEN`.
+3. **Develop your API** in the `src/` directory.
+4. **Write tests** in the `tests/` directory.
+5. **Run tests locally**:
    ```bash
    docker compose -f tests/docker-compose.yaml --project-directory tests up --build --abort-on-container-exit --exit-code-from test
    ```
-5. **CI/CD**: On each push to `main`, the GitHub Actions workflow will run tests, lint your code, and (if applicable) build and push a Docker image.
+6. **CI/CD**: On each push to `main`, the GitHub Actions workflow will run tests, lint your code, and (if applicable) build and push a Docker image.
 
 ## Customization
 - Update the API logic in `src/server.py`.
